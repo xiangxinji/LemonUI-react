@@ -1,0 +1,52 @@
+
+
+
+.btn{
+    @include btton-types($white , $gray-900 , $border-color  );
+    padding: $btn-padding-y $btn-padding-x;
+    font-family: $btn-font-family;
+    font-size: $btn-font-size ;
+    font-weight: $btn-font-weight;
+    line-height:$btn-line-height;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: $btn-border-radius;
+    outline:none !important;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: box-shadow .2s;
+    &.btn-type-primary{
+        @include btton-types($primary , $white , $primary  );
+    }
+    &.btn-type-dashed{
+        border-style: dashed;
+    }
+    &.btn-type-link{
+        @include btton-types($white , $gray-900 , $border-color  );
+        border:none;
+    }
+    &.disabled,
+    &:disabled{
+        opacity:0.76;
+        pointer-events: none;
+    }
+    &:active{
+        box-shadow: 0px 0px 5px lighten($primary, 1%);
+    }
+    &.btn-type-default:active {
+        color : $primary ; 
+    }
+    // &.btn-type-primary:active{
+    //     @include button-focus($primary, $white , $primary)
+    // }
+    // &.btn-type-default:active {
+    //     @include button-focus($white , $gray-900 , $border-color)
+    // }
+
+    &.btn-size-lg{
+        @include button-size($btn-padding-y-lg , $btn-padding-x-lg , $btn-font-size-lg)
+    }
+    &.btn-size-sm{
+        @include button-size($btn-padding-y-sm , $btn-padding-x-sm , $btn-font-size-sm)
+    }
+}

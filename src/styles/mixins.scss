@@ -1,0 +1,18 @@
+
+
+
+@mixin btton-types ($bakcground , $color , $border-color , $border-type : solid ) {
+    background-color: $bakcground ;
+    color : $color ; 
+    border: $border-type 1px $border-color;
+}
+
+@mixin  button-focus ($background , $color , $border-color){
+    background-color: darken($background , 7.6%);
+    color : darken($color, 7.6%); 
+    border-color : darken($border-color , 7.6%)
+}
+@mixin  button-size ($padding-y , $padding-x , $font-size) {
+    padding: $padding-y $padding-x ; 
+    font-size: $font-size;
+}
