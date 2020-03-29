@@ -6,6 +6,7 @@ import React, {
 } from "react";
 import classNames from "classnames";
 
+import  {IItemProps} from './item'
 
 // 导航的模式 水平或者垂直 
 type MenuMode = "vertical" | "horizontal";
@@ -46,10 +47,22 @@ const Menu: React.FC<IMenuProps> = props => {
     }
   };
 
+
+  const childs = React.Children.map(children ,(child , ind ) => {
+      const childElement = child as React.FunctionComponentElement<IItemProps>
+      if (childElement.type.displayName === 'menu-item') {
+        return React.cloneElement(childElement , {
+          index : ind 
+        }) 
+      }else {
+        console.error('使用menu 组件请在子组件填充 menu-item 组件 。。。')
+      }
+  })
+
   return (
     <ul className={classes} style={style}>
       <MenuContext.Provider value={providerData}>
-        {children}
+        {childs}
       </MenuContext.Provider>
     </ul>
   );
