@@ -68,7 +68,7 @@ const Menu: React.FC<IMenuProps> = props => {
   const childs = renderChildren(children)
 
   return (
-    <ul className={classes} style={style}>
+    <ul className={classes} style={style} data-testid="test-menu">
       <MenuContext.Provider value={providerData}>{childs}</MenuContext.Provider>
     </ul>
   );
