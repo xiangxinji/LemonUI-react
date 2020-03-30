@@ -12,7 +12,7 @@ export interface IItemProps {
 const Item: React.FC<IItemProps> = props => {
   const { index, disabled, children, className } = props;
   const context = useContext(MenuContext);
-  const classes = classNames(className , 'menu-item', {
+  const classes = classNames(className, "menu-item", {
     disabled: disabled,
     active: context.index === index
   });
@@ -20,7 +20,7 @@ const Item: React.FC<IItemProps> = props => {
     <li
       className={classes}
       onClick={() => {
-        if (!disabled && context.onSelect && typeof index === 'string') {
+        if (!disabled && context.onSelect && typeof index === "string") {
           context.onSelect(index);
         }
       }}
@@ -30,6 +30,6 @@ const Item: React.FC<IItemProps> = props => {
   );
 };
 
-Item.displayName = 'menu-item'
+Item.displayName = "menu-item";
 
 export default Item;
