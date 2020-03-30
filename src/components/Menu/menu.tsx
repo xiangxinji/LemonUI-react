@@ -7,37 +7,40 @@ import React, {
 } from "react";
 import classNames from "classnames";
 
-import { IItemProps } from "./item";
+import Item, { IItemProps } from "./item";
 
 // 导航的模式 水平或者垂直
 type MenuMode = "vertical" | "horizontal";
 // 点击选中事件的类型
-type selectFuncType = (selectedIndex: number) => void;
+type selectFuncType = (selectedIndex: string) => void;
 
 export interface IMenuProps {
   className?: string;
   mode?: MenuMode;
   style?: CSSProperties;
   onSelect?: selectFuncType;
-  defaultIndex?: number;
+  defaultIndex?: string;
+  defaultOpenSubMenus?:string [] ; 
 }
 
 type contextProps = {
-  index: number;
+  index: string ;
   onSelect?: selectFuncType;
+  mode ?: MenuMode ; 
+  defaultOpenSubMenus ?: string [] ; 
 };
 
 export const MenuContext = createContext<contextProps>({
-  index: 0
+  index: '0' , 
 });
 
 // 渲染填充索引并过滤子组件，  
 const renderChildren = (children:any) => {
   const childs = React.Children.map(children, (child, ind) => {
     const childElement = child as React.FunctionComponentElement<IItemProps>;
-    if (childElement.type.displayName === "menu-item") {
+    if (childElement.type.displayName === "menu-item" || childElement.type.displayName === 'submenu') {
       return React.cloneElement(childElement, {
-        index: ind
+        index: ind.toString()
       });
     } else {
       console.error("使用menu 组件请在子组件填充 menu-item 组件 。。。");
@@ -48,15 +51,15 @@ const renderChildren = (children:any) => {
 };
 
 const Menu: React.FC<IMenuProps> = props => {
-  const { className, mode, style, onSelect, defaultIndex, children } = props;
+  const { className, mode, style, onSelect, defaultIndex, children ,  defaultOpenSubMenus } = props;
   const [current, setCurrentItem] = useState(defaultIndex);
-  const classes = classNames("menu", className, {
-    "menu-horizontal": mode === "horizontal"
-  });
+  const classes = classNames("menu", className, 'menu-' + mode );
 
   // 创建出这个上下文 ， 提供给子组件进行调用  
   const providerData: contextProps = {
-    index: typeof current === "undefined" ? 0 : current,
+    index: typeof current === "undefined" ? '0' : current,
+    mode , 
+    defaultOpenSubMenus , 
     onSelect: selectedIndex => {
       setCurrentItem(selectedIndex);
       if (onSelect) {
@@ -75,8 +78,10 @@ const Menu: React.FC<IMenuProps> = props => {
 };
 
 Menu.defaultProps = {
-  mode: "vertical",
-  defaultIndex: 0
+  mode: "horizontal",
+  defaultIndex: '0',
+  defaultOpenSubMenus: []
 };
+
 
 export default Menu;

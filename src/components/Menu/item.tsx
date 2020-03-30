@@ -5,14 +5,14 @@ import { MenuContext } from "./menu";
 
 export interface IItemProps {
   className?: string;
-  index?: number;
+  index?: string;
   disabled?: boolean;
 }
 
 const Item: React.FC<IItemProps> = props => {
   const { index, disabled, children, className } = props;
   const context = useContext(MenuContext);
-  const classes = classNames(classNames, {
+  const classes = classNames(className , 'menu-item', {
     disabled: disabled,
     active: context.index === index
   });
@@ -20,7 +20,7 @@ const Item: React.FC<IItemProps> = props => {
     <li
       className={classes}
       onClick={() => {
-        if (!disabled && context.onSelect && typeof index === 'number') {
+        if (!disabled && context.onSelect && typeof index === 'string') {
           context.onSelect(index);
         }
       }}
