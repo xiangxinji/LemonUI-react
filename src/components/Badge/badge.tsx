@@ -12,7 +12,6 @@ export interface IBadgeProps {
 const Badge: React.FC<IBadgeProps> = ({
   value,
   className,
-  mode,
   max,
   hidden,
   children
