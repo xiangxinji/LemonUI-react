@@ -5,9 +5,9 @@ import SubMenu from './components/Menu/subMenu'
 function App() {
   return (
     <div className="App">
-      <Menu defaultIndex="3"   onSelect={(index) => {
+      <Menu defaultIndex="3"  mode="vertical"  onSelect={(index) => {
         console.log('你成功点击了 :' + index)
-      }} defaultOpenSubMenus={['3']} >
+      }} defaultOpenSubMenus={[]} >
         <MenuItem>Default</MenuItem>
         <MenuItem disabled={true}>
           Disabled

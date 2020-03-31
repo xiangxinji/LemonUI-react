@@ -30,9 +30,15 @@ const SubMenu: React.FC<ISubMenuProps> = ({
 
   // 做一些事件处理 , 当点击的情况下 , 将 改变子menu 的状态
   // CLICK
+  let timmer:any = null 
   const handleMouse = (e: React.MouseEvent, flag: boolean) => {
     e.preventDefault();
-    setOpen(flag);
+    if(timmer) {
+      window.clearTimeout(timmer) 
+    }
+    window.setTimeout(() => {
+      setOpen(flag);
+    }, 200)
   };
   // HOVER
   const renderMouseEvents =
