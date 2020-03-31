@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { render, fireEvent , cleanup , RenderResult } from "@testing-library/react";
+import { render, fireEvent , cleanup , RenderResult  } from "@testing-library/react";
 import Menu, { IMenuProps } from "./menu";
 import MenuItem from "./item";
 import SubMenu ,{ ISubMenuProps } from './subMenu' 
@@ -20,6 +20,12 @@ let wrapper:RenderResult ,
   otherElement: HTMLElement;
 
 
+  const styleElement = document.createElement('style')
+  styleElement.innerHTML = `
+    .submenu{display:none}
+    .submenu{display:block}
+  `
+
   const renderComponent =(props:IMenuProps) =>{
     wrapper = render(
         <Menu {...props}>
@@ -36,6 +42,7 @@ let wrapper:RenderResult ,
       activeElement = wrapper.getByText("Default");
       otherElement = wrapper.getByText("Other");
       disabeldElement = wrapper.getByText("Disabled");
+      wrapper.container.appendChild(styleElement)
   }
 describe("测试 导航组件 的用例", () => {
   beforeEach(() => {

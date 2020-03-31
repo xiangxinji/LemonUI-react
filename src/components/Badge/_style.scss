@@ -1,0 +1,27 @@
+
+
+.badge{
+    position: relative;
+    display: inline-block;
+    .point{
+        float: right;
+        transform: translate(50% , -50%);
+        background-color: $danger;
+        border-radius: 50%;
+        box-shadow: $badge-point-box-shadow;
+    }
+    .point:not(.nums){
+        height:$badge-point-size;
+        width:$badge-point-size ; 
+    }
+    .point.nums{
+        padding:$badge-nums-padding-y $badge-nums-padding-x; 
+        border-radius: 4px;
+        font-size:$badge-nums-font-size ;
+        color:$badge-nums-color; 
+        left:100%;
+        bottom:100%;
+        line-height:15px;
+        text-align: center;
+    }
+}
