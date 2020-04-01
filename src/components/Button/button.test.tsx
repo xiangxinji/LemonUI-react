@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { render, fireEvent } from "@testing-library/react";
 
-import Button, { buttonTypes, buttonSize } from "./button";
+import Button  from "./button";
 
 // 创建出一个被监听的函数
 const onClickFunc = jest.fn();
@@ -24,7 +24,7 @@ describe("测试Button组件", () => {
 
   it("测试type = link 时 , 渲染出来的是否是 a 标签 ", () => {
     const wrapper = render(
-      <Button btnType={buttonTypes.Link} disabled={true}>
+      <Button btnType={'link'} disabled={true}>
         点我
       </Button>
     ); 
@@ -47,8 +47,8 @@ describe("测试Button组件", () => {
   it("测试 button 组件的尺寸 是否有用 ", () => {
     const wrapper = render(
       <div>
-        <Button size={buttonSize.Large}>btn1</Button>
-        <Button size={buttonSize.Small}>btn2</Button>
+        <Button size={'lg'}>btn1</Button>
+        <Button size={'sm'}>btn2</Button>
       </div>
     );
     const btn1 = wrapper.getByText("btn1");

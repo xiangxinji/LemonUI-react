@@ -1,19 +1,12 @@
 import React from "react";
 import classNames from "classnames";
-
+ 
 // 按钮所有的类型
-export enum buttonTypes {
-  Default = "default",
-  Primary = "primary",
-  Dashed = "dashed",
-  Link = "link"
-}
+export type buttonTypes = 'default' | 'primary' | 'dashed' | 'link'
 
 // 尺寸
-export enum buttonSize {
-  Large = "lg",
-  Small = "sm"
-}
+export type buttonSize = 'lg' | 'sm' ; 
+
 
 export interface IButtonProps {
   className?: string;
@@ -34,7 +27,7 @@ const ButtonComp: React.FC<IButtonProps> = props => {
     [`${className}`]: className
   });
 
-  if (btnType === buttonTypes.Link) {
+  if (btnType === 'link') {
     return (
       <a className={classes} href={href} onClick={onClick}>
         {children}
@@ -51,7 +44,7 @@ const ButtonComp: React.FC<IButtonProps> = props => {
 };
 
 ButtonComp.defaultProps = {
-  btnType: buttonTypes.Default,
+  btnType: 'default',
   disabled: false
 };
 
