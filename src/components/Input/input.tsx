@@ -29,7 +29,11 @@ const Input: React.FC<IInputProps> = (props) => {
   const rendedElement = !isTextarea
     ? renderInputElement(props)
     : renderTextareaElement(props);
-  return <div className={classes}>{rendedElement}</div>;
+  return (
+    <div className={classes} data-testid="test-input">
+      {rendedElement}
+    </div>
+  );
 };
 
 const renderInputElement = (props: IInputProps) => {
@@ -64,7 +68,7 @@ const renderTextareaElement = (props: IInputProps) => {
     onChange,
     placeholder,
   } = props;
-  return (  
+  return (
     <textarea
       disabled={disabled}
       onChange={(event) => onChange && onChange(event.target.value)}
@@ -74,9 +78,8 @@ const renderTextareaElement = (props: IInputProps) => {
         }
       }}
       placeholder={placeholder}
-    >
-      {value || defaultValue}
-    </textarea>
+      value={value || defaultValue}
+    ></textarea>
   );
 };
 
